@@ -1,0 +1,64 @@
+Syll.song.finalNoAcrocephalidae
+Closed=1.2033
+Open=2.69
+Fval=14.9859
+pVal=0.03
+Corrected Alpha=0.01
+
+
+Syll.song.finalNoEmberizidae
+Closed=1.234
+Open=2.6148
+Fval=11.6826
+pVal=0.03
+Corrected Alpha=0.01
+
+
+Syll.song.finalNoFringillidae
+Closed=1.2615
+Open=2.4865
+Fval=9.8399
+pVal=0.099
+Corrected Alpha=0.01
+
+
+Syll.song.finalNoIcteridae
+Closed=1.2731
+Open=2.7125
+Fval=13.3381
+pVal=0.062
+Corrected Alpha=0.01
+
+
+Syll.song.finalNoMimidae
+Closed=1.2731
+Open=2.1256
+Fval=7.8118
+pVal=0.066
+Corrected Alpha=0.01
+
+
+Syll.song.finalNoMuscicapidae
+Closed=1.2731
+Open=2.7083
+Fval=12.4289
+pVal=0.03
+Corrected Alpha=0.01
+
+
+Syll.song.finalNoParulidae
+Closed=1.2606
+Open=2.7818
+Fval=14.557
+pVal=0.034
+Corrected Alpha=0.01
+
+
+Syll.song.finalNoPasserellidae
+Closed=1.4247
+Open=2.6148
+Fval=7.2124
+pVal=0.058
+Corrected Alpha=0.01
+
+

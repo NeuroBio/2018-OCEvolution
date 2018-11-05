@@ -1,0 +1,64 @@
+Syllable.rep.finalNoAcrocephalidae
+Closed=1.905
+Open=3.9881
+Fval=47.6478
+pVal=0.001
+Corrected Alpha=0.0071
+
+
+Syllable.rep.finalNoEmberizidae
+Closed=2.0039
+Open=3.9907
+Fval=37.7271
+pVal=0.001
+Corrected Alpha=0.0071
+
+
+Syllable.rep.finalNoFringillidae
+Closed=1.9477
+Open=3.9975
+Fval=37.5797
+pVal=0.001
+Corrected Alpha=0.0071
+
+
+Syllable.rep.finalNoIcteridae
+Closed=1.9469
+Open=4.0141
+Fval=41.2761
+pVal=0.001
+Corrected Alpha=0.0071
+
+
+Syllable.rep.finalNoMimidae
+Closed=2.0044
+Open=3.6806
+Fval=33.4276
+pVal=0.001
+Corrected Alpha=0.0071
+
+
+Syllable.rep.finalNoMuscicapidae
+Closed=2.0157
+Open=3.9156
+Fval=37.4036
+pVal=0.001
+Corrected Alpha=0.0071
+
+
+Syllable.rep.finalNoParulidae
+Closed=2.0128
+Open=4.153
+Fval=47.8609
+pVal=0.001
+Corrected Alpha=0.0071
+
+
+Syllable.rep.finalNoPasserellidae
+Closed=2.1345
+Open=4.0268
+Fval=32.7277
+pVal=0.001
+Corrected Alpha=0.0071
+
+
