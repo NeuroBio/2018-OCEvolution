@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6800 64-bit) (preloaded format=pdflatex 2018.10.12)  7 NOV 2018 09:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6800 64-bit) (preloaded format=pdflatex 2018.10.12)  13 NOV 2018 11:17
 entering extended mode
 **./OCTables.tex
 (OCTables.tex
@@ -41,7 +41,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 18.
 
-Overfull \hbox (20.38828pt too wide) in paragraph at lines 64--78
+Overfull \hbox (20.38828pt too wide) in paragraph at lines 87--101
  [][] 
  []
 
@@ -51,17 +51,17 @@ Overfull \hbox (20.38828pt too wide) in paragraph at lines 64--78
 [3] [4] [5] [6] [7] (OCTables.aux) ) 
 Here is how much of TeX's memory you used:
  226 strings out of 492973
- 2494 string characters out of 3126691
- 104537 words of memory out of 3000000
+ 2616 string characters out of 3126691
+ 109070 words of memory out of 3000000
  4174 multiletter control sequences out of 15000+200000
  6723 words of font info for 24 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 22i,8n,19p,307b,229s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 22i,8n,19p,351b,229s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/karar/AppData/Local/Programs/MiKT
 eX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/karar/AppData/Local/
 Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/karar/Ap
 pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on OCTables.pdf (7 pages, 49940 bytes).
+Output written on OCTables.pdf (7 pages, 50879 bytes).
 PDF statistics:
  38 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
