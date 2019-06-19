@@ -1,3 +1,5 @@
+#Setwds as necessary
+
 if(!require("xtable")){
   install.packages("xtable")
 }
@@ -39,7 +41,7 @@ SigStarCorrected <- function(Tabler){
 }
 
 
-setwd()#"D:/DataWarehouse"
+setwd()#"DataWarehouse"
 Data <- read.table("ANOVA.txt", stringsAsFactors = FALSE)
 Form <- matrix(Data[,1], ncol=7,byrow=TRUE)
 Form <- Form[,-6]
@@ -104,7 +106,7 @@ print(xtable(FormMinMax), include.rownames=FALSE)
 
 
 
-setwd()#"D:/DataWarehouse/Tri"
+setwd()#"DataWarehouse/Tri"
 Data <- read.table("ANOVA.txt", stringsAsFactors = FALSE)
 Form <- matrix(Data[,1], ncol=20,byrow=TRUE)
 Form <- Form[,-7]
@@ -190,7 +192,7 @@ print(xtable(FormMinMax), include.rownames=FALSE)
 
 
 
-setwd()#"D:/DataWarehouse/"
+setwd()#"DataWarehouse/"
 
 Data <- read.table(file.path("BrownieTriDi.txt"), stringsAsFactors = FALSE, sep="\n")
 Form <- matrix(Data[,1], ncol=4,byrow=TRUE)
@@ -237,7 +239,7 @@ Form <- SigStar(Form)
 print(xtable(Form), include.rownames=FALSE)
 
 
-setwd()#"D:/DataWarehouse/Jackknife"
+setwd()#"DataWarehouse/Jackknife"
 for(i in list.files()){
   Data <- read.table(file.path(i,"ANOVA.txt"), stringsAsFactors = FALSE)
   Form <- matrix(Data[,1], ncol=7,byrow=TRUE)
@@ -288,7 +290,7 @@ for(i in list.files()){
 }
 
 
-ssetwd()#"D:/DataWarehouse/MimidJackknife"
+ssetwd()#"DataWarehouse/MimidJackknife"
 Data <- read.table(file.path("Brownie.txt"), stringsAsFactors = FALSE, sep="\n")
 Form <- matrix(Data[,1], ncol=4,byrow=TRUE)
 Form <- gsub("OneRate=", "", Form)
@@ -307,7 +309,7 @@ Form <- SigStar(Form)
 print(xtable(Form), include.rownames=FALSE)
 
 
-setwd()#"D:/DataWarehouse/ClosedLink"
+setwd()#"DataWarehouse/ClosedLink"
 Data <- read.table("ANOVA.txt", stringsAsFactors = FALSE)
 Form <- matrix(Data[,1], ncol=7,byrow=TRUE)
 Form <- Form[,-6]
@@ -355,7 +357,7 @@ Form <- SigStar(Form)
 print(xtable(Form), include.rownames=FALSE)
 
 
-setwd()#PGGLS location
+setwd()#PGLS location
 PGLS <- read.csv("OCpglsAll_noIntercept.csv", stringsAsFactors = FALSE)
 PGLS[,1] <- gsub("[.]final", " ", PGLS[,1])
 PGLS[,1] <- gsub("[.]", " ", PGLS[,1])

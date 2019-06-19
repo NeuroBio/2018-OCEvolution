@@ -1,21 +1,22 @@
-########
 #Coded by Cristina Robinson
-#Last Modified 11-8-2017
-#Written in R-Studio Version 1.1.383
-#R Version 3.4.2
-#phytools v0.6-30     ape v4.1    maps v3.2.0
-#R.utils_2.6.0  
-########
+#Last Modified 5-1-2019
 
-################
 #Packages
-require(maps)
-require(ape)
-require(phytools)
-require(R.utils)
-####
+
+#load packages
+Packs <- c("maps", "ape", "phytools", "R.utils")
+for(i in Packs){
+  if(!eval(parse(text=paste0("require(",i,")")))){
+    install.packages(i)
+  }
+  eval(parse(text=paste0("library(",i,")")))
+}
+rm(Packs)
+
+
+
+
 #Functions that Load Data/Create the File Structure
-####
 LoadPrettyTree <- function(filename, Pretty=TRUE){
   #what it says: runs the fuctions necessary to create a nice consensus tree
   RawTree <- read.nexus(filename)
@@ -101,9 +102,18 @@ Loadbirds <- function(filename, conse){
   allinforeorder <- allinfo[reorder,]
   return(allinforeorder[,c(1:3,5:22,4)])
 }
+LoadOtherOC <- function(fileName, birbs){
+  OCdata <- read.csv(fileName)
+  reorder <- numeric(length=length(birbs$BirdtreeFormat))
+  for(i in 1:length(birbs$BirdtreeFormat)){
+    reorder[i] <- which( OCdata$BirdtreeFormat == birbs$BirdtreeFormat[i])
+  }
+  return(OCdata[reorder,1:4])
+}
 MakeFolderStructure <- function(dir){
   #create output directories and ANOVA printouts
   dir.create(file.path(dir, "DataWarehouse"))
+  dir.create(file.path(dir, "DataWarehouse/Tri"))
   dir.create(file.path(dir, "DataWarehouse/Jackknife"))
   dir.create(file.path(dir, "DataWarehouse/MimidJackknife"))
   dir.create(file.path(dir, "DataWarehouse/SpecRates"))
@@ -126,45 +136,52 @@ MakeFolderStructure <- function(dir){
   if(file.exists("Brownie.txt") == FALSE){
     file.create("Brownie.txt")
   }
-  setwd(file.path(dir, "DataWarehouse/MimidJackknife"))
+  setwd(file.path(dir, "DataWarehouse/Tri"))
+  if(file.exists("ANOVA.txt") == FALSE){
+    file.create("ANOVA.txt")
+  }
+  if(file.exists("TriBrownie.txt") == FALSE){
+    file.create("TriBrownie.txt")
+  }
+  
+    setwd(file.path(dir, "DataWarehouse/MimidJackknife"))
   if(file.exists("Brownie.txt") == FALSE){
     file.create("Brownie.txt")
   }
   setwd(file.path(dir, "DataWarehouse"))
 }
 
-#####
+
+
+
+
 #Functions that make the main Figures
-####
-QuickScatterBox <- function(vari, OC, title){
-  pdf("QuickScatter.pdf")
-  par(mfrow=c(2,2), mar=c(3,3,1,1), mgp=c(1.5,.5,0) )
-  open <- which(OC == 1)
-  closed <- which(OC == 0)
+QuickScatterBox <- function(vari, OC, title, labels=c("Song-Stable","Song-Plastic"), DOIT=TRUE){
+  if(DOIT){
+    pdf("QuickScatter.pdf")
+    par(mfrow=c(2,2), mar=c(3,3,1,1), mgp=c(1.5,.5,0) )
+    
+  }
+
   for(i in 1:ncol(vari)){
-    data <- list(vari[closed,i],vari[open,i])
+    current <- vari[,i]
+    data <- sapply(levels(OC), function(type) current[which(OC == type)])
     for(j in seq_along(data)){
       remove <- which(is.na(data[[j]])==TRUE)
       if(length(remove)>0){
         data[[j]] <- data[[j]][-remove]
       }
     }
-    ScatterBox(data,ylab="Repertoire Size",
-             xlab=title[i],labels=c("Song-Stable","Song-Plastic"),log='y',
+    ScatterBox(data,ylab=paste(title[i], "Repertoire Size"),
+             xlab="",labels=labels,log='y',
              col1=rgb(.7,.1,.7,.5), col2 = rgb(.7,.1,.7,.5))
-   # dev.off()
   }
-  
-  #plot(OC, vari, pch=20, xaxt = 'n', yaxt = 'n',xlim = c(-.5, 1.5),
-  #     xlab = "", ylab = "Repertoire Size")
-  #axis(1, at=0:1, labels=c("Closed", "Open"))
-  #axis(2, at=seq(0,3, by=.5), labels=c(0,5,10,50,100,500,1000), las=1)
-  #boxplot(closed, open, ylab = "Repertoire Size",
-  #        names=c("Closed", "Open"), yaxt = 'n')
-  #axis(2, at=seq(0,3, by=.5), labels=c(0,5,10,50,100,500,1000), las=1)
- dev.off()
+  if(DOIT){
+    dev.off()
+    
+  }
 }
-ScatterBox <- function(data,main="",sub="",xlab="",ylab="",
+ScatterBox <- function(data, main="", sub="", xlab="", ylab="",
                        labels=FALSE,col1=NA,col2=rgb(0,0,0,.7),log=""){
   #make data a list, creat empty plot, get quantiles and get offset
   if(is.list(data)==FALSE){
@@ -253,7 +270,9 @@ DataExtraction <- function(OC, data, conse, vari, mod = "linear", cotitle="",
   }
 }
 Rainbowplot <- function(conse, testvar, OCdata, title="RainbowPlot",
-                        doubleplot=FALSE, Flip="rightwards"){
+                        doubleplot=FALSE, Flip="rightwards", ANC=FALSE,
+                        CONT=FALSE){
+
   #cheating way to offset species labels
   if(Flip == "rightwards"){
     conse$tip.label <- paste("     ", conse$tip.label, sep = "")
@@ -270,7 +289,15 @@ Rainbowplot <- function(conse, testvar, OCdata, title="RainbowPlot",
   }
   names(OCdata) <- conse$tip.label
   #make pretty map
-  co <- c("black","white")
+  if(length(levels(OCdata))==2){
+    DI <- TRUE
+    co <- c("black","white")
+    levelLabel <- c("Song Stable","Song Plastic")
+  }else{
+    DI <- FALSE
+    co <- c("black","grey50", "white")
+    levelLabel <- c("Song Stable", "Longer Learning",  "Song Plastic")
+  }
   if(length(unique(testvar))>2){
     Bin <- FALSE
     #continuous data
@@ -294,14 +321,17 @@ Rainbowplot <- function(conse, testvar, OCdata, title="RainbowPlot",
   returnrates <- RateMatx(testopenclosed)
   title <- gsub("[.]", " ", title)
   title <- gsub("(^|[[:space:]])([[:alpha:]])", "\\1\\U\\2", title, perl=TRUE)
-  if(doubleplot == FALSE){
+  if(!doubleplot && !ANC){
     pdf(paste(title, ".pdf",sep="")) 
   }else{
-    if(title == "Syllable Rep Final"){
-      title <- "Syllables"
-    }else{title <- "Songs"}
+    if(doubleplot){
+      if(title == "Syllable Rep Final"){
+        title <- "Syllables"
+      }else{
+        title <- "Songs"}      
+    }
   }
-  if(Bin == TRUE){
+  if(Bin){
     AB <- densityMap(AB,fsize=0.6,legend=FALSE, direction=Flip)
     add.color.bar(leg=15,cols=rev(AB$cols),lims=c(0,1), font=2, fsize=.8,
                   digits=3,prompt=FALSE,x=3, title = "",
@@ -315,25 +345,63 @@ Rainbowplot <- function(conse, testvar, OCdata, title="RainbowPlot",
                   y=(length(conse$tip.label)-.8*length(conse$tip.label)),
                   lwd=4,fsize=.7,labels=exp(AB$lims))
   }
-  nodelabels(pie=testopenclosed$lik.anc, piecol=co, cex=.6)
-  tiplabels(pch = 21, bg = co[as.numeric(OCdata)], cex = 0.7, adj = Scootch)
-  legend(2+ShoveLess,(length(conse$tip.label)-.9*length(conse$tip.label)), c("Song Stable","Song Plastic"),
-         pch=c(19,1), cex=.75)
-  if(Bin == FALSE){
+  if(!Bin){
     #place unlogged bar labels
     rect(-2.25+Shove,length(conse$tip.label)-.79*length(conse$tip.label),
          24+Shove, length(conse$tip.label)-.75*length(conse$tip.label),
          col="white", border=NA)
     text(c(2,20)+Shove,length(conse$tip.label)-.78*length(conse$tip.label),
-         round(exp(AB$lims), digits=1), cex=.7)  
+         round(exp(AB$lims), digits=1), cex=.7) 
   }
   
-  #legendthermo
-  rect(.4+ShoveLess,(length(conse$tip.label)-.935*length(conse$tip.label)),
-       1.5+ShoveLess,(length(conse$tip.label)-.97*length(conse$tip.label)))
-  rect(.4+ShoveLess,(length(conse$tip.label)-.90*length(conse$tip.label)),
-       1.5+ShoveLess,(length(conse$tip.label)-.935*length(conse$tip.label)), col="black")
-  if(doubleplot == FALSE){
+  if(!ANC){
+    tiplabels(pch = 21, bg = co[as.numeric(OCdata)], cex = 0.7, adj = Scootch)
+    nodelabels(pie=testopenclosed$lik.anc, piecol=co, cex=.6)
+    #legendthermo
+    if(DI){
+      rect(.4+ShoveLess,(length(conse$tip.label)-.935*length(conse$tip.label)),
+           1.5+ShoveLess,(length(conse$tip.label)-.97*length(conse$tip.label)))
+      rect(.4+ShoveLess,(length(conse$tip.label)-.90*length(conse$tip.label)),
+           1.5+ShoveLess,(length(conse$tip.label)-.935*length(conse$tip.label)), col="black")
+    }else{
+      rect(.4+ShoveLess,(length(conse$tip.label)-.9625*length(conse$tip.label)),
+           1.5+ShoveLess,(length(conse$tip.label)-.9925*length(conse$tip.label)))
+      
+      rect(.4+ShoveLess,(length(conse$tip.label)-.93*length(conse$tip.label)),
+           1.5+ShoveLess,(length(conse$tip.label)-.9625*length(conse$tip.label)), col="grey50")
+      
+      rect(.4+ShoveLess,(length(conse$tip.label)-.90*length(conse$tip.label)),
+           1.5+ShoveLess,(length(conse$tip.label)-.93*length(conse$tip.label)), col="black")
+    }
+    legend(2+ShoveLess,(length(conse$tip.label)-.9*length(conse$tip.label)), levelLabel,
+           pch=21, cex=.75, col='black', pt.lwd = .5, pt.bg = co)
+  }else{
+    if(CONT){
+      tiplabels(round(as.numeric(OCdata), digits=1), bg='white', frame='none', cex = 0.7, adj = .5, offset=2) 
+    }else{
+      tiplabels(pch = 21, bg = co[as.numeric(OCdata)], cex = 0.7, adj = Scootch)
+      #legendthermo
+      if(DI){
+        rect(.4+ShoveLess,(length(conse$tip.label)-.935*length(conse$tip.label)),
+             1.5+ShoveLess,(length(conse$tip.label)-.97*length(conse$tip.label)))
+        rect(.4+ShoveLess,(length(conse$tip.label)-.90*length(conse$tip.label)),
+             1.5+ShoveLess,(length(conse$tip.label)-.935*length(conse$tip.label)), col="black")
+      }else{
+        rect(.4+ShoveLess,(length(conse$tip.label)-.9625*length(conse$tip.label)),
+             1.5+ShoveLess,(length(conse$tip.label)-.9925*length(conse$tip.label)))
+        
+        rect(.4+ShoveLess,(length(conse$tip.label)-.93*length(conse$tip.label)),
+             1.5+ShoveLess,(length(conse$tip.label)-.9625*length(conse$tip.label)), col="grey50")
+
+        rect(.4+ShoveLess,(length(conse$tip.label)-.90*length(conse$tip.label)),
+             1.5+ShoveLess,(length(conse$tip.label)-.93*length(conse$tip.label)), col="black")
+      }
+      legend(2+ShoveLess,(length(conse$tip.label)-.9*length(conse$tip.label)), levelLabel,
+             pch=21, cex=.75, col='black', pt.lwd = .5, pt.bg = co)
+    }
+    nodelabels(1:(length(testvar)-1), bg = "white", cex=.7)
+  }
+  if(!doubleplot  && !ANC){
     dev.off()
   }
   return(returnrates)
@@ -342,11 +410,16 @@ BrownieDataGen <- function(conse, OC, testvar, nsim=10, title, rater){
   print("Making simmaps for brownie.") 
   multisimmap <- make.simmap(tree=conse,x=OC, nsim=nsim, message=FALSE, Q=rater) 
   print(paste0("Simmaps generated", "  Starting a for loop with ", nsim, " loops."))
-  BrownieWithWarnings(multisimmap, testvar, title)
+  BrownieWithWarnings(multisimmap, testvar, title, ncol(rater))
   print("End brownie loop")
 }
-#following function Coded with help from Kate Synder
-BrownieWithWarnings <- function(multisimmap, testvar, title="title"){
+
+
+
+
+
+
+BrownieWithWarnings <- function(multisimmap, testvar, title="title", levels=2){
   #generate empty dataframe for the data
   nsim <- length(multisimmap)
   if(nsim < 50){
@@ -355,18 +428,20 @@ BrownieWithWarnings <- function(multisimmap, testvar, title="title"){
     SaveIt <- c(seq(50,nsim,by=50), nsim)
   }
   browniedata <- data.frame(Pval=numeric(nsim), ERRate=numeric(nsim), ERloglik=numeric(nsim),
-                            ERace=numeric(nsim), ARDRate0=numeric(nsim), ARDRate1=numeric(nsim),
-                            ARDloglik=numeric(nsim),ARDace=numeric(nsim), convergence=character(nsim),
+                            ERace=numeric(nsim), ARDloglik=numeric(nsim),ARDace=numeric(nsim),
                             stringsAsFactors = FALSE)
+  for(i in 1:levels){
+    browniedata[paste0("ARDRate", i-1)] <- numeric(nsim)
+  }
+  browniedata['convergence'] <- character(nsim)
   #for each simmap, run the brownie code and extract results.  Save every 50 runs and at the end
   for (i in 1:nsim) {
     Results <- NULL
     withTimeout(expr={
       Results <- brownie.lite(multisimmap[[i]],testvar, maxit=750000)
-      browniedata[i,1:8] <- c(Results[[11]], Results[[1]], Results[[4]],  Results[[2]],
-                              Results[[6]][1], Results[[6]][2], Results[[9]],
-                              Results[[7]])
-      browniedata[i,9] <-Results[[12]]},
+      browniedata[i,1:(ncol(browniedata)-1)] <- c(Results[[11]], Results[[1]], Results[[4]],  Results[[2]],
+                              Results[[9]], Results[[7]], Results[[6]])
+      browniedata[i,ncol(browniedata)] <- Results[[12]]},
       timeout = 5, substitute = FALSE, onTimeout = "warning")
     #if a run takes too long, quit the brownie and throw NAs
     if(is.null(Results)==TRUE){print(paste("Timeout warning; data not generated for simmap", i, sep=" "));browniedata[i,1:8] <- NA}
@@ -375,24 +450,39 @@ BrownieWithWarnings <- function(multisimmap, testvar, title="title"){
       print(paste("Brownie loop iteration",i,Sys.time()))
     }
   }
-}
+}#Coded with help from Kate Snyder
 
-BrowniePlotRates <- function(dataset, title="BrowniePlot", col=c("blue","red"), Groups=c("Rate0", "Rate1")){
+BrowniePlotRates <- function(dataset, title="BrowniePlot", col=c("blue","red"), Groups=c("Rate0", "Rate1"),
+                             Xlim =c(min(XMins),
+                                     max(XMaxes)) ){
   #data cleaning
   dataset<- dataset[!is.na(dataset$Pval),]
   dataset<- dataset[dataset$convergence == "Optimization has converged.",]
   
   #plots
-  D1 <- density(dataset$ARDRate0)
-  D2 <- density(dataset$ARDRate1)
-  plot(D1,col=col[1],
-       xlim=c(min(c(D1$x,D2$x)),
-              max(c(D1$x,D2$x))),
-       ylim=c(min(c(D1$y,D2$y)),
-              max(c(D1$y,D2$y))),
+  ARDs <- length(grep("ARDRate", colnames(dataset)))
+  D <- list()
+  YMaxes <- numeric(length=ARDs)
+  YMins <- numeric(length=ARDs)
+  XMaxes <- numeric(length=ARDs)
+  XMins <- numeric(length=ARDs)
+  for(i in 1:ARDs){
+    D[[i]] <- density(dataset[,paste0('ARDRate', i-1)])
+    YMaxes[i] <- max(D[[i]]$y)
+    YMins[i] <- min(D[[i]]$y)
+    XMaxes[i] <- max(D[[i]]$x)
+    XMins[i] <- min(D[[i]]$x)
+  }
+  plot(D[[1]],col=col[1],
+       xlim=Xlim,
+       ylim=c(min(YMins),
+              max(YMaxes)),
        main=title, xlab="Rates", font.lab=2,
-       cex.main=1, lwd=2) 
-  lines(D2, col=col[2], lwd=2)
+       ylab="Number of Observations",
+       cex.main=1, lwd=2)
+  for(i in 2:ARDs){
+    lines(D[[i]], col=col[i], lwd=2)
+  }
   abline(v=dataset$ERRate[1])
   legend("topright", legend=Groups, col=col, lty=1, lwd=2)
   #stats
@@ -406,9 +496,6 @@ BrowniePlotRates <- function(dataset, title="BrowniePlot", col=c("blue","red"), 
   writeLines(paste0("pVal", pval))
   writeLines(paste("",sep="\n\n"))
   writeLines(paste("",sep="\n\n"))
-  #text(max(c(D1$x,D2$x))*.99,max(c(D1$y,D2$y))*.6,
-  #     paste0("p-value",pval),
-  #     adj=1)
 }
 
 ANOVAResults <- function(ANOVAData){
@@ -443,9 +530,10 @@ ANOVAResults <- function(ANOVAData){
 }
 
 
-#####
+
+
+
 #Functions that are accessories for the above
-####
 meanminmaxNA <- function(variable, Birdtemp){
   NAind <- which(is.na(Birdtemp[,paste0(variable, ".min")])==TRUE)
   Birdtemp[NAind,paste0(variable, ".min")] <- Birdtemp[NAind,paste0(variable, ".final")]
@@ -462,9 +550,8 @@ Squish <- function(variable){
   return(variable)
 }
 RateMatx <- function(rawrate){
-  matsize <- length(rawrate$rates)
-  #handles ER cases
-  if(matsize == 1){matsize<- matsize+1}
+  matsize <- sqrt(length(rawrate$index.matrix))
+  
   #create matrix of correct size; make diag negative; multiple by rates
   qrates <- matrix(rep(1,matsize^2),matsize,matsize)
   diag(qrates) <- -1
@@ -523,16 +610,55 @@ ANOVAPrinter <- function(ANOVAData, CritAlpha=.05){
     CritAlpha <- rep(CritAlpha, length(ANOVAData)) 
   }
   sink(file = "ANOVA.txt", append = TRUE, split = FALSE)
-  for(i in seq_along(ANOVAData)){
-    writeLines(ANOVAData[[i]][[1]])
-    writeLines(paste0("Closed=", round(mean(ANOVAData[[i]][[2]][which(ANOVAData[[i]][[3]]=="closed")]), digits = 4)))
-    writeLines(paste0("Open=", round(mean(ANOVAData[[i]][[2]][which(ANOVAData[[i]][[3]]=="open")]), digits = 4)))
-    writeLines(paste0("Fval=", round(ANOVAData[[i]][[4]]$F, digits = 4)))
-    writeLines(paste0("pVal=", ANOVAData[[i]][[4]]$Pf))
-    writeLines(paste0("Corrected Alpha=", round(CritAlpha[i], digits = 4)))
-    writeLines(paste("",sep="\n\n"))
-    writeLines(paste("",sep="\n\n"))
+  
+  if(length(levels(ANOVAData[[i]][[3]])) == 2){
+    for(i in seq_along(ANOVAData)){
+      writeLines(ANOVAData[[i]][[1]])
+      writeLines(paste0("Closed=", round(mean(ANOVAData[[i]][[2]][which(ANOVAData[[i]][[3]]=="closed")]), digits = 4)))
+      writeLines(paste0("Open=", round(mean(ANOVAData[[i]][[2]][which(ANOVAData[[i]][[3]]=="open")]), digits = 4)))
+      writeLines(paste0("Fval=", round(ANOVAData[[i]][[4]]$F, digits = 4)))
+      writeLines(paste0("pVal=", ANOVAData[[i]][[4]]$Pf))
+      writeLines(paste0("Corrected Alpha=", round(CritAlpha[i], digits = 4)))
+      writeLines(paste("",sep="\n\n"))
+      writeLines(paste("",sep="\n\n"))
+    }    
+  }else{
+    for(i in seq_along(ANOVAData)){
+      writeLines(ANOVAData[[i]][[1]])
+      writeLines(paste0("Closed=", round(mean(ANOVAData[[i]][[2]][which(ANOVAData[[i]][[3]]=="closed")]), digits = 4)))
+      writeLines(paste0("Delayed=", round(mean(ANOVAData[[i]][[2]][which(ANOVAData[[i]][[3]]=="delayed-closed")]), digits = 4)))
+      writeLines(paste0("Open=", round(mean(ANOVAData[[i]][[2]][which(ANOVAData[[i]][[3]]=="open")]), digits = 4)))
+      writeLines(paste0("Fval=", round(ANOVAData[[i]][[4]]$F, digits = 4)))
+      writeLines(paste0("pVal=", ANOVAData[[i]][[4]]$Pf))
+      writeLines(paste0("Corrected Alpha=", round(CritAlpha[i], digits = 4)))
+      
+      writeLines("")
+      writeLines("Closed")
+      writeLines("Delayed")
+      writeLines(paste0("Tval=", round(ANOVAData[[i]][[4]]$T[2], digits = 4)))
+      writeLines(paste0("pVal=", ANOVAData[[i]][[4]]$Pt[2]))
+      writeLines("")
+      
+      writeLines("")
+      writeLines("Closed")
+      writeLines("Open")
+      writeLines(paste0("Tval=", round(ANOVAData[[i]][[4]]$T[3], digits = 4)))
+      writeLines(paste0("pVal=", ANOVAData[[i]][[4]]$Pt[3]))
+      writeLines("")
+      
+      writeLines("")
+      writeLines("Open")
+      writeLines("Delayed")
+      writeLines(paste0("Tval=", round(ANOVAData[[i]][[4]]$T[6], digits = 4)))
+      writeLines(paste0("pVal=", ANOVAData[[i]][[4]]$Pt[6]))
+      ANOVAData[[i]][[4]]$T
+      writeLines("")
+      
+      writeLines(paste("",sep="\n\n"))
+      writeLines(paste("",sep="\n\n"))
+    }
   }
+
   sink(file = NULL)
 }
 HolmesBonfer <- function(pVals){
@@ -541,4 +667,114 @@ HolmesBonfer <- function(pVals){
     Alpha[i] <- (.05/(length(pVals) - i + 1))
   }
   return(Alpha)
+}
+
+
+
+
+
+####more stuff I had to add at the end
+NodePlot <- function(tree, testVar, openClose, title,
+                     OCAce, testVarAce, cont=FALSE, Log=TRUE){
+  
+  if(cont){
+    Values <- round(OCAce$ace, digits=2)
+    AceLength <- length(OCAce$ace)
+    States <- "Length of Plasticity"
+    OC <- Values
+  }else{
+    Values <- round(OCAce$lik.anc, digits=2)
+    AceLength <- nrow(OCAce$lik.anc)
+    States <- "State Likelihood"
+    if(ncol(OCAce$lik.anc) == 2){
+      OC <- paste0('S: ', Values[,1], ", P: ", Values[,2])  
+    }else{
+      OC <- paste0('E: ', Values[,1], ", D: ", Values[,2], ", P: ",Values[,3])
+    }
+  }
+  Ylength <- seq(1,-.02,length=AceLength+1)[2:(AceLength+1)]
+  
+  
+  Rainbowplot(tree, testvar=Squish(testVar), OCdata=openClose, ANC=TRUE, title=title,
+              CONT=cont)
+  #plot
+  plot(0, type="n", ylim=c(0,1), xlim=c(0,1), xaxt='n', yaxt='n')
+  #header
+  text(x=c(0, .2, .8), 1.02,
+       c("Node", States, "Trait"), adj=0, font=2, cex=.8)
+  text(x=rep(c(.05, .25, .8), each=AceLength), 
+       y=Ylength,
+       c(paste0(1:AceLength, ': '),#node number
+         OC, #OC
+         round(exp(testVarAce$ace), digits=2)),#trait labels
+       adj=0, cex=.7)  
+}
+MakeNodePlots <- function(testVar, names, trait, OCVariants,
+                          conse, vConse, Log=TRUE){
+  
+  if(Log){
+    testVar <- log(testVar)
+  }
+  names(testVar) <- names
+  
+  #make the OC vectors
+  OpenClose <- factor(OCVariants$di)
+  OpenCloseTri <- factor(OCVariants$tri)
+  OpenCloseCont <- OCVariants$cont
+  remove <- which(is.na(OCVariants$tri))
+  OpenCloseTri <- OpenCloseTri[-remove]
+  OpenCloseCont <- OpenCloseCont[-remove]
+  
+  #get the rep aces
+  DITestVar <- ace(x=testVar, phy=conse, type="continuous", model="ER")
+  CONTTRITestVar <- ace(x=testVar[-remove], phy=vConse, type="continuous", model="ER")
+  
+  #do the main aces
+  DI <- ace(x=OpenClose, phy=conse, type="discrete", model="ER")
+  TRI <- ace(x=OpenCloseTri, phy=vConse, type="discrete", model="ER")
+  CONT <- ace(x=OpenCloseCont, phy=vConse, type="continuous", model="ER")
+  
+  
+  
+  
+  
+  NodePlot(conse, testVar, OpenClose, title=trait, OCAce=DI,
+           testVarAce=DITestVar, cont=FALSE, Log=Log)
+  NodePlot(vConse, testVar[-remove], OpenCloseTri, Log=Log,
+           title=trait, OCAce=TRI, testVarAce=CONTTRITestVar, cont=FALSE)
+  NodePlot(vConse, testVar[-remove], OpenCloseCont, title=trait,
+           OCAce=CONT, testVarAce=CONTTRITestVar, cont=TRUE, Log=Log)
+
+}
+MakeAllNodePlots <- function(birbs, call, OCVariants, ConsensusTree){
+  pdf('Nodes.pdf', width=7, height=7)
+  layout(matrix(c(1,2), ncol=2, nrow=1), widths = c(.6,.45))
+  for(i in c(2,5,8,11,14,17,18)){
+    OCVariantTemp <- OCVariants
+    CTree <- ConsensusTree
+    TestVar <- birbs[,call[i]]
+    names <- birbs$BirdtreeFormat
+    
+    remove <- which(is.na(TestVar))
+    if(length(remove) > 0){
+      TestVar <- TestVar[-remove]
+      names <- names[-remove]
+      OCVariantTemp <- OCVariantTemp[-remove,] 
+      CTree <- drop.tip(CTree, remove)
+    }
+    remove2 <- which(is.na(OCVariantTemp$tri))
+    if(length(remove2) > 0){
+      VTree <- drop.tip(CTree, remove2)
+    }else{
+      VTree <- CTree
+    }
+    MakeNodePlots(testVar=TestVar,
+                  names=names,
+                  trait=call[i],
+                  OCVariants=OCVariantTemp,
+                  conse=CTree,
+                  vConse=VTree)
+  }
+  dev.off()
+  
 }

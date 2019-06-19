@@ -1,0 +1,55 @@
+\documentclass[a4paper,12pt]{article}
+
+
+\begin{document}
+\newcommand{\beginsupplement}{%
+        \setcounter{table}{0}
+        \renewcommand{\thetable}{S\arabic{table}}%
+        \setcounter{figure}{0}
+        \renewcommand{\thefigure}{S\arabic{figure}}%
+     }
+\pagenumbering{gobble}
+    
+% latex table generated in R 3.5.1 by xtable 1.8-3 package
+% Tue Nov 06 09:19:27 2018
+\begin{table}[ht]
+\caption{PhylANOVA results for all song traits.  Sorted from most to least significant.  Song-Stable and Song-Plastic columns show means.  ``*" denotes traits with significantly different groups.}
+\centering
+\begin{tabular}{llllll}
+  \hline
+Song Trait & Song-Stable & Song-Plastic & F-Value & Corrected $\alpha$ & p-Value \\ 
+  \hline
+Syllable Rep & 2.0085 & 4.0433 & 41.7621 & 0.0071 & 0.001* \\ 
+  Song Rep & 1.2715 & 4.0179 & 32.4078 & 0.0083 & 0.001* \\ 
+  Syll Song & 1.2871 & 2.359 & 9.3669 & 0.01 & 0.078 \\ 
+  Duration & 0.7858 & 1.2927 & 1.9851 & 0.0125 & 0.432 \\ 
+  Continuity & -1.3274 & -1.0286 & 1.9026 & 0.0167 & 0.509 \\ 
+  Interval & 1.5987 & 1.218 & 1.3307 & 0.025 & 0.579 \\ 
+  Song Rate & 1.8978 & 2.0971 & 0.606 & 0.05 & 0.702 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+% latex table generated in R 3.5.1 by xtable 1.8-3 package
+% Tue Nov 13 11:07:29 2018
+\begin{table}[ht]
+\caption{Brownie results for song traits.  Sorted from most to least significant.  Song-Stable and Song-Plastic columns show means.  ``*" denotes traits where the two-rate model fit the data significantly better than the one-rate model.}
+\centering
+\begin{tabular}{llll}
+  \hline
+Song Trait & One Rate & Two Rates & p-Value \\ 
+  \hline
+Duration & -71.446 & -66.1294 & 0.001* \\ 
+  Syll Song & -105.515 & -95.4003 & 0.001* \\ 
+  Song Rate & -43.6111 & -39.0486 & 0.003* \\ 
+  Interval & -45.7435 & -41.7043 & 0.004* \\ 
+  Continuity & -26.6192 & -26.0083 & 0.269 \\ 
+  Syllable Rep & -115.1413 & -114.9815 & 0.572 \\ 
+  Song Rep & -108.4187 & -108.271 & 0.587 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+\end{document}

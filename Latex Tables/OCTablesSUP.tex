@@ -1,5 +1,8 @@
 \documentclass[a4paper,12pt]{article}
-
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{caption}
 
 \begin{document}
 \newcommand{\beginsupplement}{%
@@ -8,48 +11,6 @@
         \setcounter{figure}{0}
         \renewcommand{\thefigure}{S\arabic{figure}}%
      }
-
-    
-% latex table generated in R 3.5.1 by xtable 1.8-3 package
-% Tue Nov 06 09:19:27 2018
-\begin{table}[ht]
-\caption{PhylANOVA results for all song traits.  Sorted from most to least significant.  Song-Stable and Song-Plastic columns show means.  ``*" denotes traits with significantly different groups.}
-\centering
-\begin{tabular}{llllll}
-  \hline
-Song Trait & Song-Stable & Song-Plastic & F-Value & Corrected $\alpha$ & p-Value \\ 
-  \hline
-Syllable Rep & 2.0085 & 4.0433 & 41.7621 & 0.0071 & 0.001* \\ 
-  Song Rep & 1.2715 & 4.0179 & 32.4078 & 0.0083 & 0.001* \\ 
-  Syll Song & 1.2871 & 2.359 & 9.3669 & 0.01 & 0.078 \\ 
-  Duration & 0.7858 & 1.2927 & 1.9851 & 0.0125 & 0.432 \\ 
-  Continuity & -1.3274 & -1.0286 & 1.9026 & 0.0167 & 0.509 \\ 
-  Interval & 1.5987 & 1.218 & 1.3307 & 0.025 & 0.579 \\ 
-  Song Rate & 1.8978 & 2.0971 & 0.606 & 0.05 & 0.702 \\ 
-   \hline
-\end{tabular}
-\end{table}
-
-
-% latex table generated in R 3.5.1 by xtable 1.8-3 package
-% Tue Nov 13 11:07:29 2018
-\begin{table}[ht]
-\caption{Brownie results for song traits.  Sorted from most to least significant.  Song-Stable and Song-Plastic columns show means.  ``*" denotes traits where the two-rate model fit the data significantly better than the one-rate model.}
-\centering
-\begin{tabular}{llll}
-  \hline
-Song Trait & One Rate & Two Rates & p-Value \\ 
-  \hline
-Duration & -71.446 & -66.1294 & 0.001* \\ 
-  Syll Song & -105.515 & -95.4003 & 0.001* \\ 
-  Song Rate & -43.6111 & -39.0486 & 0.003* \\ 
-  Interval & -45.7435 & -41.7043 & 0.004* \\ 
-  Continuity & -26.6192 & -26.0083 & 0.269 \\ 
-  Syllable Rep & -115.1413 & -114.9815 & 0.572 \\ 
-  Song Rep & -108.4187 & -108.271 & 0.587 \\ 
-   \hline
-\end{tabular}
-\end{table}
 
 \beginsupplement
 \setcounter{page}{13}
@@ -112,7 +73,7 @@ Duration Max & -74.4 & -68.0492 & 0.001* \\
 \centering
 \begin{tabular}{llllll}
   \hline
-Removed Family & Song-Stable & Song-Plastic & F-Value & Corrected alpha & p-Value \\ 
+Removed Family & Song-Stable & Song-Plastic & F-Value & Corrected $\alpha$ & p-Value \\ 
   \hline
 Acrocephalidae & 1.9587 & 4.1353 & 49.4976 & 0.0071 & 0.001* \\ 
   Emberizidae & 2.0084 & 4.0433 & 37.5914 & 0.0071 & 0.001* \\ 
@@ -133,7 +94,7 @@ Acrocephalidae & 1.9587 & 4.1353 & 49.4976 & 0.0071 & 0.001* \\
 \centering
 \begin{tabular}{llllll}
   \hline
-Removed Family & Song-Stable & Song-Plastic & F-Value & Corrected alpha & p-Value \\ 
+Removed Family & Song-Stable & Song-Plastic & F-Value & Corrected $\alpha$ & p-Value \\ 
   \hline
 Muscicapidae & 1.5987 & 1.0449 & 2.5837 & 0.025 & 0.331 \\ 
   Acrocephalidae & 1.8308 & 1.3251 & 2.9201 & 0.025 & 0.405 \\ 
@@ -175,7 +136,7 @@ Removed Family & Song-Stable & Song-Plastic & F-Value & Corrected $\alpha$ & p-V
 \centering
 \begin{tabular}{llllll}
   \hline
-Removed Family & Song-Stable & Song-Plastic & F-Value & Corrected alpha & p-Value \\ 
+Removed Family & Song-Stable & Song-Plastic & F-Value & Corrected $\alpha$ & p-Value \\ 
   \hline
 Acrocephalidae & 1.2207 & 2.422 & 11.8976 & 0.01 & 0.06 \\ 
   Emberizidae & 1.2515 & 2.359 & 9.036 & 0.01 & 0.062 \\ 
@@ -196,7 +157,7 @@ Acrocephalidae & 1.2207 & 2.422 & 11.8976 & 0.01 & 0.06 \\
 \centering
 \begin{tabular}{llllll}
   \hline
-Removed Family & Song-Stable & Song-Plastic & F-Value & Corrected alpha & p-Value \\ 
+Removed Family & Song-Stable & Song-Plastic & F-Value & Corrected $\alpha$ & p-Value \\ 
   \hline
 Muscicapidae & 1.8978 & 2.1768 & 1.0362 & 0.05 & 0.558 \\ 
   Mimidae & 1.8978 & 1.7406 & 0.7583 & 0.05 & 0.605 \\ 
@@ -217,7 +178,7 @@ Muscicapidae & 1.8978 & 2.1768 & 1.0362 & 0.05 & 0.558 \\
 \centering
 \begin{tabular}{llllll}
   \hline
-Removed Family & Song-Stable & Song-Plastic & F-Value & Corrected alpha & p-Value \\ 
+Removed Family & Song-Stable & Song-Plastic & F-Value & Corrected $\alpha$ & p-Value \\ 
   \hline
 Acrocephalidae & 1.205 & 3.8787 & 29.49 & 0.0083 & 0.001* \\ 
   Emberizidae & 1.2576 & 4.0179 & 29.2291 & 0.0083 & 0.001* \\ 
@@ -394,7 +355,7 @@ Removed Mimid & One Rate & Two Rates & p-Value \\
 \centering
 \begin{tabular}{llllll}
   \hline
-Song Trait & Song-Stable & Song-Plastic & F-Value & Corrected alpha & p-Value \\ 
+Song Trait & Song-Stable & Song-Plastic & F-Value & Corrected $\alpha$ & p-Value \\ 
   \hline
 Syllable Rep & 2.0357 & 4.0814 & 41.8787 & 0.0071 & 0.001* \\ 
   Song Rep & 1.2545 & 4.1762 & 38.7502 & 0.0083 & 0.001* \\ 
@@ -424,4 +385,154 @@ Duration & -71.446 & -66.1294 & 0.001* \\
    \hline
 \end{tabular}
 \end{table}
+
+\begin{table}[ht]
+\caption{Adapted from Jenkins 1977 table 2 with new syllable repertoire and syllabels per song data included.  Syp Rep is the sum of distinct syllables within each song, while Corrected is the number of unique syllables across the full repertoire (note that SR and VPH shared one syllable).  The mean of the latter was used in our paper.  Syllables per song was calculated following the definition from our main methods. * marks the individual that was missing from table 2 in the original publication.  We deduced the repertoire of the missing male by first looking at table 1, which showed that 16 males had a repertoire size of one song.  Only 15 of the males in table 2 had a repertoire size of one song.  Thus, the missing male had a repertoire size of one song. We then compared the bands of males present in table 2 to the territory map in figure 7, and A\_RW was the only male missing from table 2.  A\_RW  was located in the DC region of figure 7, so we assigned that as his repertoire.  Jenkins notes that neighboring males share song types, so the only other song A\_RW could have known instead of DC was ZZ, which has the same number of unique syllables as DC.}
+\centering
+
+\begin{tabular}{|l|llllllll|lll|}
+  \hline
+Song Type & SR & VPH & CC & PH & KS & DC & ZZ & SE &  &  &  \\ 
+  \hline
+Syll/Sng & 3 & 2 & 3 & 3 & 2 & 1 & 1 & 4 & Syl Rep & Corrected & Syl/Sng \\ 
+\hline
+\hline
+  \_A & 1 & 1 &  &  &  &  &  &  & 5 & 4 & 2.5 \\ 
+  Fern & 1 & 1 &  &  &  &  &  &  & 5 & 4 & 2.5 \\ 
+  Knob & 1 & 1 &  &  &  &  &  &  & 5 & 4 & 2.5 \\ 
+  BR\_A &  &  & 1 &  &  &  &  &  & 3 & 3 & 3 \\ 
+  \_WA &  &  & 1 &  &  &  &  &  & 3 & 3 & 3 \\ 
+  A\_RB &  &  & 1 &  &  &  &  &  & 3 & 3 & 3 \\ 
+  AW\_ &  &  & 1 &  &  &  &  &  & 3 & 3 & 3 \\ 
+  AG\_ &  &  & 1 &  &  &  &  &  & 3 & 3 & 3 \\ 
+  A\_RY &  &  & 1 &  &  &  &  &  & 3 & 3 & 3 \\ 
+  m YW\_A &  &  & 1 &  &  &  &  &  & 3 & 3 & 3 \\ 
+  AT\_ &  &  & 1 & 1 &  &  &  &  & 6 & 6 & 3 \\ 
+  \_YA &  &  &  & 1 &  &  &  &  & 3 & 3 & 3 \\ 
+  GW\_A &  &  &  & 1 &  &  &  &  & 3 & 3 & 3 \\ 
+  A\_RG &  &  &  & 1 &  &  & 1 &  & 4 & 4 & 2 \\ 
+  RA\_Y &  &  &  & 1 &  &  &  &  & 3 & 3 & 3 \\ 
+  YR\_AG &  &  &  & 1 & 1 &  &  &  & 5 & 5 & 2.5 \\ 
+  AR\_ &  &  &  &  & 1 & 1 &  &  & 3 & 3 & 1.5 \\ 
+  Y\_AR &  &  &  &  & 1 & 1 &  &  & 3 & 3 & 1.5 \\ 
+  A\_WR &  &  &  &  &  & 1 &  &  & 1 & 1 & 1 \\ 
+  A\_GW &  &  &  &  &  & 1 &  &  & 1 & 1 & 1 \\ 
+  \_A &  &  &  &  &  &  & 1 &  & 1 & 1 & 1 \\ 
+  H. Gully &  &  &  &  &  &  & 1 & 1 & 5 & 5 & 2.5 \\ 
+  G\_RA &  &  &  &  &  &  & 1 & 1 & 5 & 5 & 2.5 \\ 
+  AY\_GR &  &  &  &  &  &  & 1 & 1 & 5 & 5 & 2.5 \\ 
+  \_AY &  &  &  &  &  &  & 1 & 1 & 5 & 5 & 2.5 \\ 
+  B\_WA &  &  &  &  &  &  &  & 1 & 4 & 4 & 4 \\ 
+  Y\_AY &  &  &  &  &  &  &  & 1 & 4 & 4 & 4 \\ 
+  A\_RW* &  &  &  &  &  & 1 &  &  & 1 & 1 & 1 \\ 
+  \hline
+   &  &  &  &  &  &  &  & & 3.5 & 3.393 & 2.5 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+\clearpage
+% latex table generated in R 3.5.2 by xtable 1.8-3 package
+% Tue Apr 30 07:56:57 2019
+\begin{longtable}{ccc}
+\caption{To count the syllable repertoire of \textit{Geospiza fortis}, recordings from McCauley library (top section of the table) and sonograms published in Grant and Grant (1996) (bottom section of the table) were examined.  The first colmn gives the recording or sonogram ID.  The second column is the recordist.  The third column is the number of syllables we counted, with the mean number of syllables at the bottom of the table.  Because this species has a song repertoire of one, the value for syllables per song was the same as the syllable repertoire.}\\
+\hline
+\textit{Geospiza fortis} & & \\
+\hline
+ML & Recordist & Syllables  \\
+\hline
+  86782 & Robert I. Bowman  & 1 \\ 
+  86729 & Robert I. Bowman  & 1 \\ 
+  86728 & Robert I. Bowman  & 2 \\ 
+  86727 & Robert I. Bowman  & 1 \\ 
+  86726 & Robert I. Bowman  & 1 \\ 
+  86724 & Robert I. Bowman  & 1 \\ 
+  86723 & Robert I. Bowman  & 1 \\ 
+  86719 & Robert I. Bowman  & 2 \\ 
+  86718 & Robert I. Bowman  & 1 \\ 
+  86717 & Robert I. Bowman  & 1 \\ 
+  86716 & Robert I. Bowman  & 2 \\ 
+  86714 & Robert I. Bowman  & 1 \\ 
+  82869 & Robert I. Bowman  & 2 \\ 
+  82865 & Robert I. Bowman  & 1 \\ 
+  82863 & Robert I. Bowman  & 1 \\ 
+  82597 & Robert I. Bowman  & 2 \\ 
+  82595 & Robert I. Bowman  & 1 \\ 
+  82576 & Robert I. Bowman  & 1 \\ 
+  82575 & Robert I. Bowman  & 1 \\ 
+  82574 & Robert I. Bowman  & 1 \\ 
+  46372 & Margery R. Plymire  & 1 \\
+  \hline
+  \\
+  Grant and Grant (1996) &  Recordist & Syllables  \\
+  \hline
+  2666 & Grant and Grant & 1 \\ 
+  4446 & Grant and Grant & 1 \\ 
+  10826 & Grant and Grant & 1 \\ 
+  4339 & Grant and Grant & 1 \\ 
+  5555 & Grant and Grant & 1 \\ 
+  5921 & Grant and Grant & 1 \\ 
+  13901 & Grant and Grant & 1 \\ 
+  17835 & Grant and Grant & 1 \\ 
+  3612 & Grant and Grant & 1 \\ 
+  16805 & Grant and Grant & 1 \\ 
+  17103 & Grant and Grant & 1 \\ 
+  5505 & Grant and Grant & 1 \\ 
+  17796 & Grant and Grant & 1 \\ 
+  5578 & Grant and Grant & 1 \\ 
+  15236 & Grant and Grant & 1 \\ 
+  15359 & Grant and Grant & 1 \\ 
+  14963 & Grant and Grant & 1 \\ 
+  10228 & Grant and Grant & 1 \\ 
+  4946 & Grant and Grant & 1 \\ 
+  4913 & Grant and Grant & 2 \\ 
+  714 & Grant and Grant & 1 \\ 
+  16167 & Grant and Grant & 2 \\ 
+  5110 & Grant and Grant & 2 \\ 
+  14687 & Grant and Grant & 1 \\ 
+  5275 & Grant and Grant & 1 \\ 
+  15514 & Grant and Grant & 1 \\ 
+  A & Grant and Grant & 1 \\ 
+  10081 & Grant and Grant & 1 \\ 
+  2639 & Grant and Grant & 1 \\ 
+  10211 & Grant and Grant & 1 \\ 
+  10550 & Grant and Grant & 2 \\ 
+  14720 & Grant and Grant & 1 \\ 
+  4620 & Grant and Grant & 2 \\ 
+  B & Grant and Grant & 2 \\
+  \hline
+   & Mean: & 1.20 \\ 
+   \hline
+\end{longtable}
+
+
+
+% latex table generated in R 3.5.2 by xtable 1.8-3 package
+% Tue Apr 30 08:28:36 2019
+\begin{table}[ht]
+\caption{To count the syllable repertoire of \textit{Geospiza scadens}, recordings from McCauley library were examined.  The first colmn gives the recording or sonogram ID.  The second column is the recordist.  The third column is the number of syllables we counted, with the mean number of syllables at the bottom of the table.  Because this species has a song repertoire of one, the value for syllables per song was the same as the syllable repertoire.}
+\centering
+\begin{tabular}{ccc}
+  \hline
+\textit{Geospiza scandens} &  &  \\ 
+  \hline \hline
+ML & Recordist & Syllables \\ \hline
+  133749351 & Eric DeFonso  & 1 \\ 
+  46235 & Robert I. Bowman & 1 \\ 
+  46234 & Robert I. Bowman & 2 \\ 
+  46233 & Robert I. Bowman & 2 \\ 
+  46228 & Robert I. Bowman & 2 \\ 
+  46224 & Robert I. Bowman & 2 \\ 
+  46222 & Robert I. Bowman & 2 \\ 
+  46220 & Robert I. Bowman & 1 \\ 
+  49219 & Robert I. Bowman & 2 \\ 
+  46218 & Robert I. Bowman & 1 \\ 
+  46217 & Robert I. Bowman & 1 \\ \hline
+   & Mean: & 1.54 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
 \end{document}

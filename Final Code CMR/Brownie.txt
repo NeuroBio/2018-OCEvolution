@@ -1,0 +1,12 @@
+Syllable.rep.final
+OneRate=-120.2983
+TwoRates=-120.0876
+pVal=0.516
+
+
+Syllable.rep.finalFULL
+OneRate=-120.2983
+TwoRates=-120.0695
+pVal=0.499
+
+

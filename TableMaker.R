@@ -1,5 +1,9 @@
+if(!require("xtable")){
+  install.packages("xtable")
+}
 library("xtable")
-setwd("C:/Users/Kara/Desktop/DataWarehouse")
+
+setwd("D:/Documents/R/2018-OC-EvolutionDataWarehouse")
 
 ANOVATable <- function(Path, Print=TRUE){
   ANOVA <- read.table(Path, stringsAsFactors = FALSE)[,1]

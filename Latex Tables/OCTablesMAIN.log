@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6800 64-bit) (preloaded format=pdflatex 2018.10.12)  14 DEC 2018 11:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6800 64-bit) (preloaded format=pdflatex 2018.10.12)  1 MAY 2019 08:30
 entering extended mode
-**./OCTables.tex
-(OCTables.tex
+**./OCTablesMAIN.tex
+(OCTablesMAIN.tex
 LaTeX2e <2018-04-01> patch level 5
 ("C:\Users\karar\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
@@ -19,8 +19,8 @@ File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-) (OCTables.aux)
-\openout1 = `OCTables.aux'.
+) (OCTablesMAIN.aux)
+\openout1 = `OCTablesMAIN.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
 LaTeX Font Info:    ... okay on input line 4.
@@ -45,66 +45,24 @@ Overfull \hbox (11.90642pt too wide) in paragraph at lines 18--31
  [][] 
  []
 
+[1
 
-Overfull \hbox (38.66586pt too wide) in paragraph at lines 66--82
- [][] 
- []
-
-
-Overfull \hbox (53.80182pt too wide) in paragraph at lines 113--127
- [][] 
- []
-
-
-Overfull \hbox (53.80182pt too wide) in paragraph at lines 134--148
- [][] 
- []
-
-
-Overfull \hbox (33.2826pt too wide) in paragraph at lines 155--169
- [][] 
- []
-
-
-Overfull \hbox (53.80182pt too wide) in paragraph at lines 176--190
- [][] 
- []
-
-
-Overfull \hbox (53.80182pt too wide) in paragraph at lines 197--211
- [][] 
- []
-
-
-Overfull \hbox (53.80182pt too wide) in paragraph at lines 218--232
- [][] 
- []
-
-
-Overfull \hbox (32.42564pt too wide) in paragraph at lines 395--408
- [][] 
- []
-
-[13
-
-{C:/Users/karar/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [14]
-[15] [16] [17] [18] [19] (OCTables.aux) ) 
+{C:/Users/karar/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+(OCTablesMAIN.aux) ) 
 Here is how much of TeX's memory you used:
- 226 strings out of 492973
- 2616 string characters out of 3126691
- 110015 words of memory out of 3000000
- 4174 multiletter control sequences out of 15000+200000
- 6723 words of font info for 24 fonts, out of 3000000 for 9000
+ 224 strings out of 492973
+ 2635 string characters out of 3126691
+ 62778 words of memory out of 3000000
+ 4173 multiletter control sequences out of 15000+200000
+ 6376 words of font info for 23 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 22i,8n,19p,357b,229s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/karar/AppData/Local/Programs
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/karar/AppData/L
-ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/kar
-ar/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-
-Output written on OCTables.pdf (7 pages, 50803 bytes).
+ 22i,8n,19p,341b,194s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/karar/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmmi12.pfb><C:/Users/karar/AppData/Local/Programs/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+Output written on OCTablesMAIN.pdf (1 page, 27209 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
+ 14 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

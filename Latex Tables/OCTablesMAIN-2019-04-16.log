@@ -1,0 +1,130 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6800 64-bit) (preloaded format=pdflatex 2018.10.12)  1 MAY 2019 16:05
+entering extended mode
+**./OCTablesMAIN-2019-04-16.tex
+(OCTablesMAIN-2019-04-16.tex
+LaTeX2e <2018-04-01> patch level 5
+("C:\Users\karar\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Users\karar\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size12.clo"
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Users\karar\AppData\Local\Programs\MiKTeX 2.9\tex\latex\arydshln\arydshln.
+sty"
+Package: arydshln 2018/09/26 v1.74 
+\dashlinedash=\dimen103
+\dashlinegap=\dimen104
+\adl@box=\box26
+\adl@height=\dimen105
+\adl@heightsave=\dimen106
+\adl@depth=\dimen107
+\adl@depthsave=\dimen108
+\adl@finaldepth=\dimen109
+\adl@columns=\count88
+\adl@ncol=\count89
+\adl@currentcolumn=\count90
+\adl@currentcolumnsave=\count91
+\adl@totalheight=\count92
+\adl@totalheightsave=\count93
+\adl@dash=\count94
+\adl@gap=\count95
+\adl@cla=\count96
+\adl@clb=\count97
+\adl@everyvbox=\toks14
+\adl@LTpagetotal=\dimen110
+)
+("C:\Users\karar\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\caption.st
+y"
+Package: caption 2018/10/06 v3.3-154 Customizing captions (AR)
+
+("C:\Users\karar\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\caption3.s
+ty"
+Package: caption3 2018/09/12 v1.8c caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 64.
+
+("C:\Users\karar\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\keyval.st
+y"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+\captionmargin=\dimen111
+\captionmargin@=\dimen112
+\captionwidth=\dimen113
+\caption@tempdima=\dimen114
+\caption@indent=\dimen115
+\caption@parindent=\dimen116
+\caption@hangindent=\dimen117
+)
+\c@caption@flags=\count98
+\c@ContinuedFloat=\count99
+) (OCTablesMAIN-2019-04-16.aux)
+\openout1 = `OCTablesMAIN-2019-04-16.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 11.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 11.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 11.
+
+Overfull \hbox (14.52158pt too wide) in paragraph at lines 13--26
+ [][] 
+ []
+
+
+Overfull \hbox (7.74817pt too wide) in paragraph at lines 35--44
+ [][] 
+ []
+
+
+Overfull \hbox (21.3994pt too wide) in paragraph at lines 68--81
+ [][] 
+ []
+
+[1
+
+{C:/Users/karar/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+[3] [4] (OCTablesMAIN-2019-04-16.aux) ) 
+Here is how much of TeX's memory you used:
+ 1573 strings out of 492973
+ 26129 string characters out of 3126691
+ 109835 words of memory out of 3000000
+ 5506 multiletter control sequences out of 15000+200000
+ 6683 words of font info for 24 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 36i,9n,39p,789b,309s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/karar/AppData/Local/Programs/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/karar/AppData/Loc
+al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/kara
+r/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+Output written on OCTablesMAIN-2019-04-16.pdf (4 pages, 44521 bytes).
+PDF statistics:
+ 27 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
